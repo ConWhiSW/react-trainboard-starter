@@ -6,16 +6,16 @@ import Stations from './components/Stations';
 
 const App = () => (
     <BrowserRouter>
-        <div className = "App">
+        <div className="App">
             <Routes>
-                <Route path = "/stations">
-                    <Route path = ":id" element = { <Station/> }/>
-       
-                    <Route index element = { <Stations/> }/>
+                <Route path="/stations">
+                    <Route path=":id" element={<Station />} />
+
+                    <Route index element={<Stations />} />
                 </Route>
             </Routes>
             <footer>
-                <Link to = "/stations">Stations</Link>
+                <Link to="/stations">Stations</Link>
             </footer>
         </div>
     </BrowserRouter>
