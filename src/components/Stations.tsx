@@ -12,11 +12,8 @@ const Stations: React.FC = () => {
             .then((value) => {
                 setResponse(JSON.stringify(value));
             })
-            .catch((err) => console.log(err))
-            .finally(() => console.log('finally'));
+            .catch((err) => setResponse('API ERROR!!! ' + err));
     }, []);
-
-    console.log('hello world');
 
     const apiRequest : faresData = {
         originStation : 'TOD',
