@@ -1,22 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import { fareReturnData, faresData } from '../../customTypes';
+import { faresData, journeyDetail } from '../../customTypes';
 import { fetchRoutes } from '../../helpers/ApiCallHelper';
+import { organiseResponse } from '../../helpers/HandleApiResponse';
 
 const Station: React.FC = () => {
 
-    const [response, setResponse] = useState<fareReturnData | string>('');
+    const [response, setResponse] = useState<journeyDetail[] | string>('');
 
     // at the minute, this just prints the string of the API return to screen
     useEffect(() => {
         fetchRoutes(exampleApiRequest)
             .then((value) => {
-                setResponse(value);
+                setResponse(organiseResponse(value));
             })
             .catch((err) => setResponse('API ERROR!!! ' + err));
     }, []);
 
     const exampleApiRequest : faresData = {
-        originStation : 'TOD',
+        originStation : 'KGX',
         destinationStation: 'LDS',
         numberOfAdults: '1',
         numberOfChildren: '0',
@@ -34,7 +35,7 @@ const Station: React.FC = () => {
     } else {
         return (
             <div>
-                {response.outboundJourneys[0].journeyOptionToken}
+                {response[0].originStation.displayName}
             </div>
         );
     }
