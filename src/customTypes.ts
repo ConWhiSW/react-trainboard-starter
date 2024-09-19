@@ -8,3 +8,12 @@ export type faresData = {
     outboundDateTime: string;
     outboundIsArriveBy: string;
 };
+
+export type stationDetail = {
+    stationCode: string;
+    stationName : string;
+};
+
+//export type fareReturnData = {
+//
+//};
