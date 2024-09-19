@@ -15,12 +15,12 @@ export type stationDetail = {
 };
 
 export type journeyDetail = {
-    originStation : string;
-    destinationStation : string;
-    departureTime: string;
-    arrivalTime: string;
+    originStation : stationDetail;
+    destinationStation : stationDetail;
+    departureTime: Date;
+    arrivalTime: Date;
     status: string;
-    journeyDurationInMinutes: string;
+    journeyDurationInMinutes: number;
 }
 
 export type journeyLegType = {

@@ -1,4 +1,4 @@
-import { faresData } from '../customTypes';
+import { fareReturnData, faresData } from '../customTypes';
 
 const lnerEndpoint = 'https://mobile-api-softwire2.lner.co.uk/v1/';
 
@@ -23,5 +23,5 @@ export const fetchRoutes = async (callData: faresData) => {
         },
     });
 
-    return (await response.json());
+    return (await response.json() as fareReturnData);
 };
