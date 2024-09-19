@@ -8,17 +8,16 @@ const Stations: React.FC = () => {
 
     // at the minute, this just prints the string of the API return to screen
     useEffect(() => {
-        fetchRoutes(apiRequest)
+        fetchRoutes(exampleApiRequest)
             .then((value) => {
                 setResponse(JSON.stringify(value));
             })
             .catch((err) => setResponse('API ERROR!!! ' + err));
     }, []);
 
-    const apiRequest : faresData = {
+    const exampleApiRequest : faresData = {
         originStation : 'TOD',
         destinationStation: 'LDS',
-        noChanges: 'false',
         numberOfAdults: '1',
         numberOfChildren: '0',
         journeyType: 'single',

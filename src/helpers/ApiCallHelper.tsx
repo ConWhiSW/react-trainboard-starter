@@ -12,10 +12,9 @@ export const fetchStations = () => {
 
 export const fetchRoutes = async (callData: faresData) => {
     const callEndpoint = lnerEndpoint + 'fares?originStation=' + callData.originStation + '&destinationStation='
-        + callData.destinationStation + '&noChanges=' + callData.noChanges + '&numberOfAdults='
-        + callData.numberOfAdults + '&numberOfChildren' + callData.numberOfChildren + '&journeyType='
-        + callData.journeyType + '&outboundDateTime=' + callData.outboundDateTime + '&outboundIsArriveBy='
-        + callData.outboundIsArriveBy;
+        + callData.destinationStation + '&numberOfAdults=' + callData.numberOfAdults + '&numberOfChildren'
+        + callData.numberOfChildren + '&journeyType=' + callData.journeyType + '&outboundDateTime='
+        + callData.outboundDateTime + '&outboundIsArriveBy=' + callData.outboundIsArriveBy;
 
     const response = await fetch(callEndpoint, {
         method: 'GET',
