@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 import './App.css';
+import Home from './components/Home';
 import Station from './components/Station';
 import Stations from './components/Stations';
 
@@ -8,9 +9,9 @@ const App = () => (
     <BrowserRouter>
         <div className="App">
             <Routes>
+                <Route path="/" element={<Home />} />
                 <Route path="/stations">
                     <Route path=":id" element={<Station />} />
-
                     <Route index element={<Stations />} />
                 </Route>
             </Routes>
