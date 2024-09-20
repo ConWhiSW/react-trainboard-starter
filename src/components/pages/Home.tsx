@@ -1,30 +1,30 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { stationDetail } from '../../customTypes';
 import './home.css';
+import { stationDetail } from '../../customTypes';
 import Dropdown from '../dropdown/Dropdown';
 
 const Home = () => {
-    const exampleStations : stationDetail[] = [
+    const exampleStations: stationDetail[] = [
         {
             displayName: '',
             crs: '',
             nlc: '',
         },
         {
-            displayName : 'Manchester Piccadilly',
+            displayName: 'Manchester Piccadilly',
             crs: 'MAN',
-            nlc : '296800',
+            nlc: '296800',
         },
         {
-            displayName : 'London Kings Cross',
+            displayName: 'London Kings Cross',
             crs: 'KGX',
-            nlc : '612100',
+            nlc: '612100',
         },
         {
-            displayName : 'Cambridge',
+            displayName: 'Cambridge',
             crs: 'CBG',
-            nlc : '702200',
+            nlc: '702200',
         },
         {
             displayName: 'Cambridge North',
@@ -55,7 +55,7 @@ const Home = () => {
                 placeholder='Select Station'
                 value={to}
                 setValue={setTo} />
-            <Link className='main-button' to={'/Station/'+from+'/'+to}><div>
+            <Link className='main-button' to={'/Station/' + from + '/' + to}><div>
                 <h3>Find Stations</h3>
             </div></Link>
         </form>

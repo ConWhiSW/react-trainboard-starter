@@ -1,21 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { format } from 'date-fns';
+import './station.css';
 import { faresData, journeyDetail, stationDetail } from '../../customTypes';
 import { fetchRoutes } from '../../helpers/ApiCallHelper';
 import { organiseResponse } from '../../helpers/HandleApiResponse';
+import rail from './rail.jpg';
+import thomas from './tommyboy.png';
 
 const Station: React.FC = () => {
 
     const { from, to } = useParams();
     const [response, setResponse] = useState<journeyDetail[] | string>('');
+    const [loading, setLoading] = useState(true);
+    const [isError, setIsError] = useState(false);
 
     useEffect(() => {
+        setLoading(true);
         fetchRoutes(exampleApiRequest)
             .then((value) => {
                 setResponse(organiseResponse(value));
+                setLoading(false);
             })
-            .catch((err) => setResponse('There has been an error whilst finding your route. Error: ' + err));
+            .catch((err) => { setIsError(true); setResponse('There has been an error whilst finding your route. Error: ' + err); });
     }, []);
 
     const minutesToHours = (minutes: number) => {
@@ -51,8 +58,8 @@ const Station: React.FC = () => {
         },
     ];
 
-    const exampleApiRequest : faresData = {
-        originStation : from!,
+    const exampleApiRequest: faresData = {
+        originStation: from!,
         destinationStation: to!,
         numberOfAdults: '1',
         numberOfChildren: '0',
@@ -60,6 +67,24 @@ const Station: React.FC = () => {
         outboundDateTime: '2024-10-19T15%3A30%3A00.000%2B01%3A00',
         outboundIsArriveBy: 'false',
     };
+    if (loading || isError) {
+        return (
+            <div>
+                <div className='loading-page'>
+                    <img className='railtrack' src={rail} alt="rail" />
+                    <div className={`${isError ? 'error-tainer' : 'tom-tainer'}`}>
+                        <img className='thomas' src={thomas} />
+                    </div>
+                </div>
+                <div className='loading-data'>
+                    {isError ? <h2>OOPS! An Error Occurred</h2> : <h2>Loading Data...</h2>}
+
+                </div>
+
+            </div>
+
+        );
+    }
 
     if (typeof (response) === 'string') {
         return (
