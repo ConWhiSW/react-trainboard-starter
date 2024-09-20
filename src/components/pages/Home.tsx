@@ -100,7 +100,8 @@ const Home = () => {
 
             />
             <br />
-            <Link className="main-button" to={'/Station/' + from + '/' + to + '/' + formatISO(time)}>
+            <Link className="main-button" to={'/Station/' + from + '/'
+                + to + '/' + formatISO(time) + '/' + departArriveTime }>
                 <div>
                     <h3>Find Available Routes</h3>
                 </div>

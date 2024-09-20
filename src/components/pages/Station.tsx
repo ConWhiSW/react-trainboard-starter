@@ -8,7 +8,7 @@ import { organiseResponse } from '../../helpers/HandleApiResponse';
 
 const Station: React.FC = () => {
 
-    const { from, to, time } = useParams();
+    const { from, to, time, timeDA } = useParams();
     const [response, setResponse] = useState<journeyDetail[] | string>('');
 
     useEffect(() => {
@@ -38,7 +38,7 @@ const Station: React.FC = () => {
         numberOfChildren: '0',
         journeyType: 'single',
         outboundDateTime: apiTimeConvert(formatISO(time!)),
-        outboundIsArriveBy: 'false',
+        outboundIsArriveBy: timeDA === '0' ? 'false' : 'true',
     };
 
     if (typeof(response) === 'string' && response !== '') {

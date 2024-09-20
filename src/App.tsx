@@ -14,7 +14,7 @@ const App = () => (
                 <Header />
                 <Routes>
                     <Route path="/" element={<Home />} />
-                    <Route path="/Station/:from/:to/:time" element={<Station />} />
+                    <Route path="/Station/:from/:to/:time/:timeDA" element={<Station />} />
                 </Routes>
             </div>
         </BrowserRouter ></LocalizationProvider>
