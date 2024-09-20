@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { format } from 'date-fns';
+import { format, formatISO } from 'date-fns';
 import './station.css';
 import { faresData, journeyDetail } from '../../customTypes';
 import { fetchRoutes } from '../../helpers/ApiCallHelper';
@@ -8,7 +8,7 @@ import { organiseResponse } from '../../helpers/HandleApiResponse';
 
 const Station: React.FC = () => {
 
-    const { from, to } = useParams();
+    const { from, to, time, timeDA } = useParams();
     const [response, setResponse] = useState<journeyDetail[] | string>('');
 
     useEffect(() => {
@@ -25,33 +25,11 @@ const Station: React.FC = () => {
         return String(fullHours).padStart(2,'0') + ':'
             + String(remainingMinutes).padStart(2, '0');
     };
-    const exampleStations: stationDetail[] = [
-        {
-            displayName: 'Manchester Piccadilly',
-            crs: 'MAN',
-            nlc: '296800',
-        },
-        {
-            displayName: 'London Kings Cross',
-            crs: 'KGX',
-            nlc: '612100',
-        },
-        {
-            displayName: 'Cambridge',
-            crs: 'CBG',
-            nlc: '702200',
-        },
-        {
-            displayName: 'Cambridge North',
-            crs: 'CMB',
-            nlc: '800100',
-        },
-        {
-            displayName: 'Manchester Victoria',
-            crs: 'MCV',
-            nlc: '297000',
-        },
-    ];
+
+    const apiTimeConvert = (ISOTime: string) => {
+        const apicolon = ISOTime.replace(/:/g, '%3A');
+        return apicolon.replace(/\+/g, '%2B');
+    };
 
     const exampleApiRequest : faresData = {
         originStation : from!,
@@ -59,8 +37,8 @@ const Station: React.FC = () => {
         numberOfAdults: '1',
         numberOfChildren: '0',
         journeyType: 'single',
-        outboundDateTime: '2024-10-19T15%3A30%3A00.000%2B01%3A00',
-        outboundIsArriveBy: 'false',
+        outboundDateTime: apiTimeConvert(formatISO(time!)),
+        outboundIsArriveBy: timeDA === '0' ? 'false' : 'true',
     };
 
     if (typeof(response) === 'string' && response !== '') {
