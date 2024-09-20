@@ -25,17 +25,14 @@ select > option {
 }
 
 .select-wrapper {
-    position: relative;
-    width: 300px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
-.select-wrapper::after {
-    content: '▼';
-    position: absolute;
-    top: 50%;
-    right: 20px;
-    transform: translateY(-50%);
-    pointer-events: none;
-    color: #333;
-    opacity: 0.5;
+.icon-container {
+    margin-left: -5%;
+    justify-content: center;
+    align-items: center;
 }
