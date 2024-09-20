@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { format } from 'date-fns';
+import { format, formatISO } from 'date-fns';
 import './station.css';
 import { faresData, journeyDetail } from '../../customTypes';
 import { fetchRoutes } from '../../helpers/ApiCallHelper';
@@ -8,7 +8,7 @@ import { organiseResponse } from '../../helpers/HandleApiResponse';
 
 const Station: React.FC = () => {
 
-    const { from, to } = useParams();
+    const { from, to, time } = useParams();
     const [response, setResponse] = useState<journeyDetail[] | string>('');
 
     useEffect(() => {
@@ -26,13 +26,18 @@ const Station: React.FC = () => {
             + String(remainingMinutes).padStart(2, '0');
     };
 
+    const apiTimeConvert = (ISOTime: string) => {
+        const apicolon = ISOTime.replace(/:/g, '%3A');
+        return apicolon.replace(/\+/g, '%2B');
+    };
+
     const exampleApiRequest : faresData = {
         originStation : from!,
         destinationStation: to!,
         numberOfAdults: '1',
         numberOfChildren: '0',
         journeyType: 'single',
-        outboundDateTime: '2024-10-19T15%3A30%3A00.000%2B01%3A00',
+        outboundDateTime: apiTimeConvert(formatISO(time!)),
         outboundIsArriveBy: 'false',
     };
 
