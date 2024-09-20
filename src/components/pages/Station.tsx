@@ -31,18 +31,24 @@ const Station: React.FC = () => {
     if (typeof(response) === 'string') {
         return (
             <div>
-                {response}
+                <h3>
+                    {response}
+                </h3>
             </div>
         );
     } else {
         return (
             <div>
-                Displaying available routes for: {' '}
-                {response[0].originStation.displayName}
-                {' to '}
-                {response[0].destinationStation.displayName}
+                <h2>
+                    Displaying available routes for: {' '}
+                    {response[0].originStation.displayName}
+                    {' to '}
+                    {response[0].destinationStation.displayName}
+                </h2>
+                {response.map((route) => {return (<DisplayRow
+                    key={response.indexOf(route)} route={route} />);})}
             </div>
-        );
+        )
     }
 };
 
