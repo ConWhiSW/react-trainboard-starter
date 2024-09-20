@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { format } from 'date-fns';
 import './station.css';
-import { faresData, journeyDetail, stationDetail } from '../../customTypes';
+import { faresData, journeyDetail } from '../../customTypes';
 import { fetchRoutes } from '../../helpers/ApiCallHelper';
 import { organiseResponse } from '../../helpers/HandleApiResponse';
 
@@ -25,38 +25,6 @@ const Station: React.FC = () => {
         return String(fullHours).padStart(2,'0') + ':'
             + String(remainingMinutes).padStart(2, '0');
     };
-    const exampleStations: stationDetail[] = [
-        {
-            displayName: '',
-            crs: '',
-            nlc: '',
-        },
-        {
-            displayName: 'Manchester Piccadilly',
-            crs: 'MAN',
-            nlc: '296800',
-        },
-        {
-            displayName: 'London Kings Cross',
-            crs: 'KGX',
-            nlc: '612100',
-        },
-        {
-            displayName: 'Cambridge',
-            crs: 'CBG',
-            nlc: '702200',
-        },
-        {
-            displayName: 'Cambridge North',
-            crs: 'CMB',
-            nlc: '800100',
-        },
-        {
-            displayName: 'Manchester Victoria',
-            crs: 'MCV',
-            nlc: '297000',
-        },
-    ];
 
     const exampleApiRequest : faresData = {
         originStation : from!,
