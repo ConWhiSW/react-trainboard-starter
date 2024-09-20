@@ -49,7 +49,6 @@ const Home = () => {
                 placeholder='Select Station'
                 value={from}
                 setValue={setFrom} />
-            <h5>{from || 'No'}</h5>
             <h3>To</h3>
             <Dropdown bottomOptions={exampleStations}
                 placeholder='Select Station'

@@ -22,7 +22,8 @@ const Station: React.FC = () => {
     const minutesToHours = (minutes: number) => {
         const fullHours = Math.floor((minutes / 60));
         const remainingMinutes = minutes % 60;
-        return fullHours + 'hr ' + remainingMinutes + 'min';
+        return String(fullHours).padStart(2,'0') + ':'
+            + String(remainingMinutes).padStart(2, '0');
     };
     const exampleStations: stationDetail[] = [
         {

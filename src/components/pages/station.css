@@ -10,7 +10,9 @@ h2 {
 
 table {
     border-collapse: collapse;
-    width: 100%;
+    border: 1px solid lightgray;
+    width: 80%;
+    margin: 0 auto;
 }
 
 th, td {
