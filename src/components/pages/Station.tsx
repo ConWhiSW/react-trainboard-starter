@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { faresData, journeyDetail, stationDetail } from '../../customTypes';
 import { fetchRoutes } from '../../helpers/ApiCallHelper';
 import { organiseResponse } from '../../helpers/HandleApiResponse';
@@ -6,6 +7,7 @@ import DisplayRow from '../displayrow/DisplayRow';
 
 const Station: React.FC = () => {
 
+    const { from, to } = useParams();
     const [response, setResponse] = useState<journeyDetail[] | string>('');
 
     useEffect(() => {
@@ -13,12 +15,12 @@ const Station: React.FC = () => {
             .then((value) => {
                 setResponse(organiseResponse(value));
             })
-            .catch((err) => setResponse('API ERROR!!! ' + err));
+            .catch((err) => setResponse('There has been an error whilst finding your route. Error: ' + err));
     }, []);
 
     const exampleApiRequest : faresData = {
-        originStation : 'KGX',
-        destinationStation: 'LDS',
+        originStation : from!,
+        destinationStation: to!,
         numberOfAdults: '1',
         numberOfChildren: '0',
         journeyType: 'single',
@@ -35,8 +37,10 @@ const Station: React.FC = () => {
     } else {
         return (
             <div>
-                <DisplayRow />
+                Displaying available routes for: {' '}
                 {response[0].originStation.displayName}
+                {' to '}
+                {response[0].destinationStation.displayName}
             </div>
         );
     }

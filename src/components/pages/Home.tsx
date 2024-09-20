@@ -56,7 +56,7 @@ const Home = () => {
                 placeholder='Select Station'
                 value={to}
                 setValue={setTo} />
-            <Link className='main-button' to="/Station"><div>
+            <Link className='main-button' to={'/Station/'+from+'/'+to}><div>
                 <h3>Find Stations</h3>
             </div></Link>
         </form>
