@@ -1,0 +1,41 @@
+select {
+    width: 300px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    background-color: #f9f9f9;
+    font-size: 16px;
+    color: #333;
+    box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.2);
+
+    /* Following is to remove the default arrow from various browsers */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+select:focus {
+    border-bottom: none;
+    outline: none; /* Gets rid of annoying border */
+    /* border-radius: 20px 20px 0px 0px; */
+}
+
+select > option {
+    border: 1px solid green;
+}
+
+.select-wrapper {
+    position: relative;
+    width: 300px;
+}
+
+.select-wrapper::after {
+    content: '▼';
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: #333;
+    opacity: 0.5;
+}
