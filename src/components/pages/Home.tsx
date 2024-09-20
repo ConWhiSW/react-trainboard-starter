@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { stationDetail } from '../../customTypes';
 import './home.css';
+import { stationDetail } from '../../customTypes';
 import Dropdown from '../dropdown/Dropdown';
 
 const Home = () => {
@@ -49,7 +49,6 @@ const Home = () => {
                 placeholder='Select Station'
                 value={from}
                 setValue={setFrom} />
-            <h5>{from || 'No'}</h5>
             <h3>To</h3>
             <Dropdown bottomOptions={exampleStations}
                 placeholder='Select Station'
