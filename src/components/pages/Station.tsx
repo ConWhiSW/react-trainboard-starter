@@ -16,34 +16,6 @@ const Station: React.FC = () => {
             .catch((err) => setResponse('API ERROR!!! ' + err));
     }, []);
 
-    const exampleStations : stationDetail[] = [
-        {
-            displayName : 'Manchester Piccadilly',
-            crs: 'MAN',
-            nlc : '296800',
-        },
-        {
-            displayName : 'London Kings Cross',
-            crs: 'KGX',
-            nlc : '612100',
-        },
-        {
-            displayName : 'Cambridge',
-            crs: 'CBG',
-            nlc : '702200',
-        },
-        {
-            displayName: 'Cambridge North',
-            crs: 'CMB',
-            nlc: '800100',
-        },
-        {
-            displayName: 'Manchester Victoria',
-            crs: 'MCV',
-            nlc: '297000',
-        },
-    ];
-
     const exampleApiRequest : faresData = {
         originStation : 'KGX',
         destinationStation: 'LDS',
