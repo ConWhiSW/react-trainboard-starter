@@ -11,7 +11,7 @@ import thomas from './tommyboy.png';
 const Station: React.FC = () => {
 
     const { from, to, time, timeDA } = useParams();
-    const [response, setResponse] = useState<journeyDetail[] | string>('');
+    const [response, setResponse] = useState<journeyDetail[] | null>(null);
     const [loading, setLoading] = useState(true);
     const [isError, setIsError] = useState(false);
 
@@ -22,13 +22,13 @@ const Station: React.FC = () => {
                 setResponse(organiseResponse(value));
                 setLoading(false);
             })
-            .catch((err) => { setIsError(true); setResponse('There has been an error whilst finding your route. Error: ' + err); });
+            .catch((err) => { setIsError(true); });
     }, []);
 
     const minutesToHours = (minutes: number) => {
         const fullHours = Math.floor((minutes / 60));
         const remainingMinutes = minutes % 60;
-        return String(fullHours).padStart(2,'0') + ':'
+        return String(fullHours).padStart(2, '0') + ':'
             + String(remainingMinutes).padStart(2, '0');
     };
 
@@ -37,8 +37,8 @@ const Station: React.FC = () => {
         return apicolon.replace(/\+/g, '%2B');
     };
 
-    const exampleApiRequest : faresData = {
-        originStation : from!,
+    const exampleApiRequest: faresData = {
+        originStation: from!,
         destinationStation: to!,
         numberOfAdults: '1',
         numberOfChildren: '0',
@@ -63,16 +63,14 @@ const Station: React.FC = () => {
             </div>
 
         );
-    }
-
-     else {
+    } else {
         return (
             <div>
                 <h2>
                     Displaying available routes for: {' '}
-                    {response[0].originStation.displayName}
+                    {response![0].originStation.displayName}
                     {' to '}
-                    {response[0].destinationStation.displayName}
+                    {response![0].destinationStation.displayName}
                 </h2>
                 <table>
                     <thead>
@@ -86,13 +84,13 @@ const Station: React.FC = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {response.map((route) => {
+                        {response!.map((route) => {
                             let status = route.status;
                             if (route.status == 'normal') {
                                 status = 'On Time';
                             }
                             return (
-                                <tr key={response.indexOf(route)}>
+                                <tr key={response!.indexOf(route)}>
                                     <td>
                                         {route.originStation.displayName}
                                     </td>
