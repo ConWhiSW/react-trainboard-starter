@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { format } from 'date-fns';
 import './station.css';
-import { faresData, journeyDetail } from '../../customTypes';
+import { faresData, journeyDetail, stationDetail } from '../../customTypes';
 import { fetchRoutes } from '../../helpers/ApiCallHelper';
 import { organiseResponse } from '../../helpers/HandleApiResponse';
 
@@ -26,6 +26,11 @@ const Station: React.FC = () => {
             + String(remainingMinutes).padStart(2, '0');
     };
     const exampleStations: stationDetail[] = [
+        {
+            displayName: '',
+            crs: '',
+            nlc: '',
+        },
         {
             displayName: 'Manchester Piccadilly',
             crs: 'MAN',
