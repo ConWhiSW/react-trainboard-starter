@@ -20,19 +20,19 @@ const Home = () => {
             nlc: '',
         },
         {
-            displayName : 'Manchester Piccadilly',
+            displayName: 'Manchester Piccadilly',
             crs: 'MAN',
-            nlc : '296800',
+            nlc: '296800',
         },
         {
-            displayName : 'London Kings Cross',
+            displayName: 'London Kings Cross',
             crs: 'KGX',
-            nlc : '612100',
+            nlc: '612100',
         },
         {
-            displayName : 'Cambridge',
+            displayName: 'Cambridge',
             crs: 'CBG',
-            nlc : '702200',
+            nlc: '702200',
         },
         {
             displayName: 'Cambridge North',

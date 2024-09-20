@@ -5,18 +5,24 @@ import './station.css';
 import { faresData, journeyDetail } from '../../customTypes';
 import { fetchRoutes } from '../../helpers/ApiCallHelper';
 import { organiseResponse } from '../../helpers/HandleApiResponse';
+import rail from './rail.jpg';
+import thomas from './tommyboy.png';
 
 const Station: React.FC = () => {
 
     const { from, to, time, timeDA } = useParams();
     const [response, setResponse] = useState<journeyDetail[] | string>('');
+    const [loading, setLoading] = useState(true);
+    const [isError, setIsError] = useState(false);
 
     useEffect(() => {
+        setLoading(true);
         fetchRoutes(exampleApiRequest)
             .then((value) => {
                 setResponse(organiseResponse(value));
+                setLoading(false);
             })
-            .catch((err) => setResponse('There has been an error whilst finding your route. Error: ' + err));
+            .catch((err) => { setIsError(true); setResponse('There has been an error whilst finding your route. Error: ' + err); });
     }, []);
 
     const minutesToHours = (minutes: number) => {
@@ -40,24 +46,26 @@ const Station: React.FC = () => {
         outboundDateTime: apiTimeConvert(formatISO(time!)),
         outboundIsArriveBy: timeDA === '0' ? 'false' : 'true',
     };
+    if (loading || isError) {
+        return (
+            <div>
+                <div className='loading-page'>
+                    <img className='railtrack' src={rail} alt="rail" />
+                    <div className={`${isError ? 'error-tainer' : 'tom-tainer'}`}>
+                        <img className='thomas' src={thomas} />
+                    </div>
+                </div>
+                <div className='loading-data'>
+                    {isError ? <h2>OOPS! An Error Occurred</h2> : <h2>Loading Data...</h2>}
 
-    if (typeof(response) === 'string' && response !== '') {
-        return (
-            <div>
-                <h3>
-                    {response}
-                </h3>
+                </div>
+
             </div>
+
         );
-    } else if (response === '') {
-        return (
-            <div>
-                <h1>
-                    Searching for available routes...
-                </h1>
-            </div>
-        );
-    } else {
+    }
+
+     else {
         return (
             <div>
                 <h2>

@@ -3,6 +3,13 @@
     display: flex;
     flex-direction: column;
 }
+.loading-page {
+    width: 100vw;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 h2 {
     margin-bottom: 3rem;
@@ -47,4 +54,97 @@ form {
 
 .main-button > div > h3 {
     color: white;
+}
+
+.railtrack {
+    width: 200px;
+    height: 200px;
+    background-color: blue;
+}
+
+:root {
+    --circle-radius: 115px; /* Radius of the circular path */
+    --center-x: -100px; /* X adjustment for the center */
+    --center-y: 0px; /* Y adjustment for the center */
+}
+
+.thomas {
+    width: 50px;
+    height: 30px;
+    position: absolute;
+}
+
+@keyframes rotate {
+    0% {
+        transform: translate(var(--center-x), var(--center-y)) rotate(0deg)
+            translate(var(--circle-radius)) rotate(100deg);
+    }
+    25% {
+        transform: translate(var(--center-x), var(--center-y)) rotate(90deg)
+            translate(var(--circle-radius)) rotate(100deg);
+    }
+    50% {
+        transform: translate(var(--center-x), var(--center-y)) rotate(180deg)
+            translate(var(--circle-radius)) rotate(100deg);
+    }
+    75% {
+        transform: translate(var(--center-x), var(--center-y)) rotate(270deg)
+            translate(var(--circle-radius)) rotate(100deg);
+    }
+    100% {
+        transform: translate(var(--center-x), var(--center-y)) rotate(360deg)
+            translate(var(--circle-radius)) rotate(100deg);
+    }
+}
+
+@keyframes error-rotate {
+    0% {
+        transform: translate(var(--center-x), var(--center-y)) rotate(0deg)
+            translate(var(--circle-radius)) rotate(100deg);
+    }
+    25% {
+        transform: translate(
+                calc(var(--center-x) + 20px),
+                calc(var(--center-y) - 20px)
+            )
+            rotate(90deg) translate(var(--circle-radius)) rotate(150deg);
+    }
+    50% {
+        transform: translate(
+                calc(var(--center-x) - 20px),
+                calc(var(--center-y) + 20px)
+            )
+            rotate(180deg) translate(var(--circle-radius)) rotate(50deg);
+    }
+    75% {
+        transform: translate(
+                calc(var(--center-x) + 20px),
+                calc(var(--center-y) + 20px)
+            )
+            rotate(270deg) translate(var(--circle-radius)) rotate(200deg);
+    }
+    100% {
+        transform: translate(var(--center-x), var(--center-y)) rotate(360deg)
+            translate(var(--circle-radius)) rotate(100deg);
+    }
+}
+
+.error-tainer {
+    position: relative;
+    animation-name: error-rotate;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-duration: 3s;
+}
+
+.loading-data {
+    margin-top: -40vw;
+}
+
+.tom-tainer {
+    position: relative;
+    animation-name: rotate;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-duration: 3s;
 }
