@@ -23,7 +23,7 @@ export type journeyDetail = {
     journeyDurationInMinutes: number;
 }
 
-export type journeyLegType = {
+type journeyLegType = {
     legId: string;
     rsid: string;
     origin: stationDetail;
@@ -43,14 +43,14 @@ export type journeyLegType = {
     iptisTripIdentifier: string;
 }
 
-export type breakdownType = {
+type breakdownType = {
     passenger: string;
     passengerStatus: string;
     ticketCount: number;
     costInPennies: number;
 }
 
-export type ticketType = {
+type ticketType = {
     fareId: string;
     fareSignature: string;
     fareOriginLocationName: string;
@@ -77,7 +77,7 @@ export type ticketType = {
     routeRestriction: { restrictionCode: string; restrictionDisplayName: string; restrictionPrintingName: string };
 }
 
-export type bulletinType = {
+type bulletinType = {
     id: number;
     title: string;
     description: string;
@@ -86,7 +86,7 @@ export type bulletinType = {
     usingDefaultTitle: boolean;
 }[]
 
-export type stationMessageType = {
+type stationMessageType = {
     stationMessageId: string;
     crsList: string[];
     severity: string;
