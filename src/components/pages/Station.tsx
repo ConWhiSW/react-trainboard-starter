@@ -16,21 +16,21 @@ const Station: React.FC = () => {
             .catch((err) => setResponse('API ERROR!!! ' + err));
     }, []);
 
-    const exampleStations : stationDetail[] = [
+    const exampleStations: stationDetail[] = [
         {
-            displayName : 'Manchester Piccadilly',
+            displayName: 'Manchester Piccadilly',
             crs: 'MAN',
-            nlc : '296800',
+            nlc: '296800',
         },
         {
-            displayName : 'London Kings Cross',
+            displayName: 'London Kings Cross',
             crs: 'KGX',
-            nlc : '612100',
+            nlc: '612100',
         },
         {
-            displayName : 'Cambridge',
+            displayName: 'Cambridge',
             crs: 'CBG',
-            nlc : '702200',
+            nlc: '702200',
         },
         {
             displayName: 'Cambridge North',
@@ -44,8 +44,8 @@ const Station: React.FC = () => {
         },
     ];
 
-    const exampleApiRequest : faresData = {
-        originStation : 'KGX',
+    const exampleApiRequest: faresData = {
+        originStation: 'KGX',
         destinationStation: 'LDS',
         numberOfAdults: '1',
         numberOfChildren: '0',
@@ -54,7 +54,7 @@ const Station: React.FC = () => {
         outboundIsArriveBy: 'false',
     };
 
-    if (typeof(response) === 'string') {
+    if (typeof (response) === 'string') {
         return (
             <div>
                 {response}

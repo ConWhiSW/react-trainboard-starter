@@ -10,8 +10,7 @@ const Home = () => {
     const [to, setTo] = useState<string | null>(null);
 
     return <div className='page'>
-        <h1>Trainboard Train Station Provider</h1>
-        <h2>Welcome To SoftRailBoardWire. Select stations to get started!</h2>
+        <h1>Welcome To SoftTrainBoardWire. Select stations to get started!</h1>
         <form>
             <h3>From</h3>
             <Dropdown bottomOptions={possibleStations} placeholder='Select Station' value={from} setValue={setFrom} />
