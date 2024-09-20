@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { faresData, journeyDetail, stationDetail } from '../../customTypes';
 import { fetchRoutes } from '../../helpers/ApiCallHelper';
 import { organiseResponse } from '../../helpers/HandleApiResponse';
+import DisplayRow from '../displayrow/DisplayRow';
 
 const Station: React.FC = () => {
 
     const [response, setResponse] = useState<journeyDetail[] | string>('');
 
-    // at the minute, this just prints the string of the API return to screen
     useEffect(() => {
         fetchRoutes(exampleApiRequest)
             .then((value) => {
@@ -35,6 +35,7 @@ const Station: React.FC = () => {
     } else {
         return (
             <div>
+                <DisplayRow />
                 {response[0].originStation.displayName}
             </div>
         );

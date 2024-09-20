@@ -14,7 +14,7 @@ const Dropdown = ({ placeholder, bottomOptions, value, setValue }: DropdownProps
     return (<div className='select-wrapper'>
         <select onChange={(e) => setValue(e.target.value)} name={'Select Station'} value={value || placeholder}>
             {bottomOptions.map((option => {
-                return <option key={option.crs}>{option.displayName}</option>;
+                return <option key={option.crs} value={option.crs}>{option.displayName}</option>;
             }))}
 
         </select>

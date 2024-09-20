@@ -46,11 +46,17 @@ const Home = () => {
         <h2>Welcome To SoftRailBoardWire. Select stations to get started!</h2>
         <form>
             <h3>From</h3>
-            <Dropdown bottomOptions={exampleStations} placeholder='Select Station' value={from} setValue={setFrom} />
+            <Dropdown bottomOptions={exampleStations}
+                placeholder='Select Station'
+                value={from}
+                setValue={setFrom} />
             <h5>{from || 'No'}</h5>
             <h3>To</h3>
-            <Dropdown bottomOptions={exampleStations} placeholder='Select Station' value={to} setValue={setTo} />
-            <Link className='main-button' to="/ABC123U&ME"><div>
+            <Dropdown bottomOptions={exampleStations}
+                placeholder='Select Station'
+                value={to}
+                setValue={setTo} />
+            <Link className='main-button' to="/Station"><div>
                 <h3>Find Stations</h3>
             </div></Link>
         </form>
