@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { stationDetail } from '../../customTypes';
 import './home.css';
+import { stationDetail } from '../../customTypes';
 import Dropdown from '../dropdown/Dropdown';
 
 const Home = () => {

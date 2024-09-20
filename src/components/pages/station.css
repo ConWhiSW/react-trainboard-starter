@@ -1,0 +1,48 @@
+.page {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+h2 {
+    margin-bottom: 3rem;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #DDD;
+}
+
+tbody > tr:hover {background-color: #a8fbff;}
+
+form {
+    background-color: #f8fbff;
+    width: 90%;
+    max-width: 500px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+}
+
+.main-button {
+    background-color: #5770d0;
+    display: inline-flex; /* Needed as react links are odd, I think this is stupid */
+    width: 200px;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
+    margin: 20px;
+    justify-content: center;
+    text-decoration: none;
+    align-items: center;
+    border-radius: 30px;
+}
+
+.main-button > div > h3 {
+    color: white;
+}
