@@ -1,4 +1,5 @@
 import React from 'react';
+import { HiChevronDown } from 'react-icons/hi';
 import './dropdown.css';
 
 interface DropdownProps {
@@ -15,6 +16,9 @@ const Dropdown = ({ placeholder, bottomOptions, value, setValue }: DropdownProps
                 return <option key={option}>{option}</option>;
             }))}
         </select>
+        <div className='icon-container'>
+            <HiChevronDown />
+        </div>
     </div>);
 };
 
