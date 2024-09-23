@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { DateTimePicker } from '@mui/x-date-pickers';
 import { addMinutes, formatISO } from 'date-fns';
 import './home.css';
-import { stationDetail } from '../../customTypes';
+import { stationCall, stationDetail } from '../../customTypes';
 import { fetchStations } from '../../helpers/ApiCallHelper';
 import Dropdown from '../dropdown/Dropdown';
 
@@ -15,7 +15,7 @@ const Home = () => {
     }
 
     const [isStationsLoading, setIsStationsLoading] = useState(true);
-    const [stations, setStations] = useState<any>({});
+    const [stations, setStations] = useState<stationCall[]>([]);
 
     const exampleStations: stationDetail[] = [
         {
@@ -59,14 +59,8 @@ const Home = () => {
         const stations = async () => {
             try {
                 const response = await fetchStations();
-                setStations(response.stations);
+                setStations(response);
                 setIsStationsLoading(false);
-                // const stationData = response
-                // // Deal with readable stream
-
-                // console.log(stationData);
-                // setStations(stationData);
-                // setIsStationsLoading(false);
             } catch (error: any) {
                 console.log(error.message);
             }

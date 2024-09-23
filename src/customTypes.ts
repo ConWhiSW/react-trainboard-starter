@@ -1,5 +1,5 @@
 export type faresData = {
-    originStation : string;
+    originStation: string;
     destinationStation: string;
     numberOfAdults: string;
     numberOfChildren: string;
@@ -10,18 +10,18 @@ export type faresData = {
 
 export type stationDetail = {
     displayName: string;
-    nlc : string;
+    nlc: string;
     crs: string;
 };
 
 export type journeyDetail = {
-    originStation : stationDetail;
-    destinationStation : stationDetail;
+    originStation: stationDetail;
+    destinationStation: stationDetail;
     departureTime: Date;
     arrivalTime: Date;
     status: string;
     journeyDurationInMinutes: number;
-}
+};
 
 type journeyLegType = {
     legId: string;
@@ -41,14 +41,14 @@ type journeyLegType = {
     firstClassDiningOption: string;
     firstClassDiningOptionDetails: { name: string; description: string };
     iptisTripIdentifier: string;
-}
+};
 
 type breakdownType = {
     passenger: string;
     passengerStatus: string;
     ticketCount: number;
     costInPennies: number;
-}
+};
 
 type ticketType = {
     fareId: string;
@@ -74,8 +74,12 @@ type ticketType = {
     isFlexiAdvanceProduct: boolean;
     originFlexiWindowSize: number;
     isCheapestTicket: boolean;
-    routeRestriction: { restrictionCode: string; restrictionDisplayName: string; restrictionPrintingName: string };
-}
+    routeRestriction: {
+        restrictionCode: string;
+        restrictionDisplayName: string;
+        restrictionPrintingName: string;
+    };
+};
 
 type bulletinType = {
     id: number;
@@ -84,7 +88,7 @@ type bulletinType = {
     category: string;
     severity: string;
     usingDefaultTitle: boolean;
-}[]
+}[];
 
 type stationMessageType = {
     stationMessageId: string;
@@ -92,7 +96,7 @@ type stationMessageType = {
     severity: string;
     category: string;
     message: string;
-}[]
+}[];
 
 export type journeyReturnType = {
     journeyOptionToken: string;
@@ -111,10 +115,22 @@ export type journeyReturnType = {
     bulletins: bulletinType;
     stationMessages: stationMessageType;
     isEligibleForLoyalty: boolean;
-}
+};
 
 export type fareReturnData = {
     numberOfAdults: number;
     numberOfChildren: number;
     outboundJourneys: journeyReturnType[];
+};
+
+export type stationCall = {
+    aliases: string[];
+    crs: string;
+    id: number;
+    isGroupStation: boolean;
+    isSilverSeekStation: boolean;
+    latitude: number;
+    longitude: number;
+    name: string;
+    nlc: string;
 };
