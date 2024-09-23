@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { DateTimePicker } from '@mui/x-date-pickers';
 import { addMinutes, formatISO } from 'date-fns';
 import './home.css';
 import { stationDetail } from '../../customTypes';
+import { fetchStations } from '../../helpers/ApiCallHelper';
 import Dropdown from '../dropdown/Dropdown';
 
 const Home = () => {
@@ -13,7 +14,10 @@ const Home = () => {
         E_ARRIVE_TIME,
     }
 
-    const exampleStations : stationDetail[] = [
+    const [isStationsLoading, setIsStationsLoading] = useState(true);
+    const [stations, setStations] = useState<any>({});
+
+    const exampleStations: stationDetail[] = [
         {
             displayName: '',
             crs: '',
@@ -50,6 +54,25 @@ const Home = () => {
     const [to, setTo] = useState<string>('');
     const [departArriveTime, setDepartArriveTime] = useState<timeMode>(timeMode.E_DEPART_TIME);
     const [time, setTime] = useState<Date>(addMinutes(new Date(), 1));
+
+    useEffect(() => {
+        const stations = async () => {
+            try {
+                const response = await fetchStations();
+                setStations(response.stations);
+                setIsStationsLoading(false);
+                // const stationData = response
+                // // Deal with readable stream
+
+                // console.log(stationData);
+                // setStations(stationData);
+                // setIsStationsLoading(false);
+            } catch (error: any) {
+                console.log(error.message);
+            }
+        };
+        stations();
+    }, []);
 
     return (<div className='page'>
         <h1>Welcome To SoftTrainBoardWire. Select stations to get started!</h1>
@@ -101,12 +124,15 @@ const Home = () => {
             />
             <br />
             <Link className="main-button" to={'/Station/' + from + '/'
-                + to + '/' + formatISO(time) + '/' + departArriveTime }>
+                + to + '/' + formatISO(time) + '/' + departArriveTime}>
                 <div>
                     <h3>Find Available Routes</h3>
                 </div>
             </Link>
         </form>
+
+        <p>{String(isStationsLoading)}</p>
+        <p>{JSON.stringify(stations, null, 2)}</p>
 
     </div>);
 };
