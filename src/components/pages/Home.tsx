@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { DateTimePicker } from '@mui/x-date-pickers';
-import { addMinutes, format, formatISO } from 'date-fns';
+import { addMinutes, formatISO } from 'date-fns';
 import './home.css';
 import { stationDetail } from '../../customTypes';
 import Dropdown from '../dropdown/Dropdown';
@@ -93,7 +93,7 @@ const Home = () => {
                 label={departArriveTime === timeMode.E_DEPART_TIME ? 'Depart After' : 'Arrive By'}
                 defaultValue={addMinutes(new Date(), 1)}
                 value={time}
-                onChange={(newTime) => setTime(newTime!)}
+                onChange={(newTime) => setTime(newTime === null ? new Date() : newTime)}
                 views={['year', 'day', 'hours', 'minutes']}
                 ampm={false}
                 disablePast={true}

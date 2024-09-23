@@ -22,7 +22,7 @@ const Station: React.FC = () => {
                 setResponse(organiseResponse(value));
                 setLoading(false);
             })
-            .catch((err) => { setIsError(true); });
+            .catch(() => { setIsError(true); });
     }, []);
 
     const minutesToHours = (minutes: number) => {
@@ -33,26 +33,26 @@ const Station: React.FC = () => {
     };
 
     const apiTimeConvert = (ISOTime: string) => {
-        const apicolon = ISOTime.replace(/:/g, '%3A');
-        return apicolon.replace(/\+/g, '%2B');
+        const API_Colon = ISOTime.replace(/:/g, '%3A');
+        return API_Colon.replace(/\+/g, '%2B');
     };
 
     const exampleApiRequest: faresData = {
-        originStation: from!,
-        destinationStation: to!,
+        originStation: from === undefined ? '' : from,
+        destinationStation: to === undefined ? '' : to,
         numberOfAdults: '1',
         numberOfChildren: '0',
         journeyType: 'single',
-        outboundDateTime: apiTimeConvert(formatISO(time!)),
+        outboundDateTime: apiTimeConvert(formatISO(time === undefined ? new Date() : time)),
         outboundIsArriveBy: timeDA === '0' ? 'false' : 'true',
     };
-    if (loading || isError) {
+    if (loading || isError || response == null) {
         return (
             <div>
                 <div className='loading-page'>
                     <img className='railtrack' src={rail} alt="rail" />
                     <div className={`${isError ? 'error-tainer' : 'tom-tainer'}`}>
-                        <img className='thomas' src={thomas} />
+                        <img alt='Train' className='thomas' src={thomas} />
                     </div>
                 </div>
                 <div className='loading-data'>
@@ -68,9 +68,9 @@ const Station: React.FC = () => {
             <div>
                 <h2>
                     Displaying available routes for: {' '}
-                    {response![0].originStation.displayName}
+                    {response[0].originStation.displayName}
                     {' to '}
-                    {response![0].destinationStation.displayName}
+                    {response[0].destinationStation.displayName}
                 </h2>
                 <table>
                     <thead>
@@ -84,13 +84,13 @@ const Station: React.FC = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {response!.map((route) => {
+                        {response.map((route) => {
                             let status = route.status;
                             if (route.status == 'normal') {
                                 status = 'On Time';
                             }
                             return (
-                                <tr key={response!.indexOf(route)}>
+                                <tr key={response.indexOf(route)}>
                                     <td>
                                         {route.originStation.displayName}
                                     </td>
