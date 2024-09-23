@@ -28,7 +28,5 @@ export const fetchRoutes = async (callData: faresData) => {
         },
     });
 
-    console.log(await response.json());
-
     return (await response.json() as fareReturnData);
 };
